@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>مفكرة الأستاذ</title><style>
+:root{--bg:#f6f4ef;--c:#fff;--t:#1d2b2a;--m:#68777a;--p:#0f766e;--l:#d9d5cb;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#13201f;--c:#1b2b2a;--t:#e7efee;--m:#9bb0ad;--p:#2dd4bf;--l:#2e4543}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--t);font:15px/1.6 system-ui,Tahoma,Arial,sans-serif;padding-bottom:70px}
+#v{padding:10px;max-width:720px;margin:auto}.bar{display:flex;gap:8px;margin-bottom:8px}
+select,input,textarea,button{font:inherit;color:var(--t);background:var(--c);border:1px solid var(--l);border-radius:8px;padding:7px;box-sizing:border-box}
+input,textarea,select{width:100%}.bar select{flex:1}label{display:block;margin:6px 0;font-size:13px;color:var(--m)}
+button{cursor:pointer}button.p{background:var(--p);color:#fff;border:0;padding:8px 14px;margin:4px 0}
+.cd{background:var(--c);border:1px solid var(--l);border-radius:12px;padding:10px;margin:8px 0}
+.r{display:flex;align-items:center;gap:8px}.r .nm{flex:1;cursor:pointer}.r button{padding:4px 10px}
+small,.m{color:var(--m)}.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:560px}
+td,th{border:1px solid var(--l);padding:3px;text-align:center;font-size:13px}td input{width:54px;text-align:center;padding:4px}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--c);border-top:1px solid var(--l);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{flex:1;border:0;border-radius:0;padding:10px 2px;font-size:12px;background:none}nav .on{color:var(--p);font-weight:700}h3{margin:12px 0 4px}
+img.ph{width:72px;height:72px;border-radius:50%;object-fit:cover}
+</style></head><body><div id=v></div><nav></nav><script>
+const $=s=>document.querySelector(s),K='mfk1',td=()=>new Date().toISOString().slice(0,10),uid=()=>Math.random().toString(36).slice(2,9);
+let S;try{S=JSON.parse(localStorage.getItem(K))}catch(e){}
+S=S||{pin:'',cl:[],st:[],ls:[],sc:[],hw:[],mk:{}};
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+const M=new Date().getMonth()+1,U={tab:0,c:S.cl[0]?S.cl[0].id:'',tri:M>=9?1:M<=3?2:3,sid:null,pv:0,ok:0,hw:null};
+const D=['شرح النص','اللغة','الإنتاج الكتابي','التواصل الشفوي'],DY=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const f=x=>x==null?'—':x.toFixed(2);
+/* الأعداد: غ = غائب لا يُحتسب، غ0 = غائب يُحتسب صفرًا */
+const P=v=>{v=(v||'').trim();if(!v)return;if(v==='غ')return null;v=parseFloat(v.replace('غ','').replace(',','.'));return isNaN(v)?undefined:v};
+const wa=a=>{if(a.some(x=>x[0]===undefined))return;a=a.filter(x=>x[0]!==null);if(!a.length)return null;return a.reduce((s,x)=>s+x[0]*x[1],0)/a.reduce((s,x)=>s+x[1],0)};
+const avg=m=>{m=m||{};const c=wa([[P(m.e),2],[P(m.t),1]]);if(c===undefined)return;return wa([[c,1],[P(m.j),2],[P(m.o),1]])};
+const an=i=>{const a=[1,2,3].map(t=>avg(S.mk[i+'|'+t]));return a.some(x=>x==null)?undefined:(a[0]+2*a[1]+2*a[2])/5};
+const cur=()=>S.st.find(s=>s.id===U.sid),stu=()=>S.st.filter(s=>s.c===U.c&&!s.ar).sort((a,b)=>(a.ln+a.fn).localeCompare(b.ln+b.fn,'ar'));
+const cn=i=>{const c=S.cl.find(x=>x.id===i);return c?c.s+' · '+c.n:''};
+const SD=[[1,0,'المدرسة الأولى،أحبك ولكني أريد أن ألعب،أخذت غيبته تطول،أنا أيضا مسؤول،كل آمالنا فيك،العنقود،أصبح رجلا،حصة أنشطة تأليفية (الأسرة)،رهبة ممتعة،جزاء المثابرة،نحو المجد،الاعتراف،الرحلة،أصبحت تلميذا نجيبا،أنا وأستاذي،حصة أنشطة تأليفية (المدرسة)'],[2,0,'مدرستي الثانية،لكم أحببت هذا الحي،حنين،قلق ممض،حي يواجه الشدائد،العم باخير،بذر العنكبوت،حصة أنشطة تأليفية (الحي)،تونس الأحلام،في جبال خمير،سوسة العتيقة،عرس تقليدي،تونس الجميلة،اغتيال حشاد،جسر الأجيال،حصة أنشطة تأليفية (تونس الجميلة)'],[3,0,'حياتنا في لابونيا،أطفال في أتون الحرب،صبي الدكان،امتحان الشجاعة،أطفال غزة،ضيفة من بلاد بعيدة،صديقة من فلسطين،حصة أنشطة تأليفية (الأطفال في العالم)،رأي الجازية في الرجال،نصيف،الثعلبان والأسد،في كهف التنين،القمقم،حصان طروادة،في المطحنة،حصة أنشطة تأليفية (حكايات وأساطير)'],[1,2,'السرد الخطي،السرد غير الخطي،البنية الثلاثية للنص السردي،تقييم نص سردي (البنية الثلاثية)'],[2,2,'الإطاران المكاني والزماني،الشخصية القصصية،إغناء نص سردي بالوصف،تقييم نص سردي مغنى بالوصف'],[3,2,'إغناء نص سردي بالحوار،الراوي في النص السردي،تقييم نص سردي بتوظيف الراوي']];
+const OFF=[['2026-10-26','2026-11-01'],['2026-12-14','2026-12-27'],['2027-02-01','2027-02-07'],['2027-03-15','2027-03-28'],['2026-12-17'],['2027-01-01'],['2027-03-20'],['2027-04-09'],['2027-05-01']];
+const TW={1:['2026-11-09','2026-11-21'],2:['2027-01-04','2027-02-20'],3:['2027-04-05','2027-05-08']};
+const TX={1:['2026-11-09','2026-12-05'],2:['2026-12-28','2027-03-03'],3:['2027-03-29','2027-05-08']};
+const off=d=>OFF.some(o=>d>=o[0]&&d<=(o[1]||o[0]));
+function plan(){const out={};[1,2,3].forEach(t=>{const q=D.map((_,g)=>S.ls.filter(l=>l.c===U.c&&l.t===t&&l.g===g&&!l.dn));q.forEach(a=>a.forEach(l=>l.pl=''));const sl=[];const W=(U.ext?TX:TW)[t];for(let x=new Date(W[0]+'T12:00');x<=new Date(W[1]+'T12:00');x.setDate(x.getDate()+1)){const d=x.toISOString().slice(0,10);if(d<=td()||off(d))continue;S.sc.filter(e=>e.c===U.c&&e.d===x.getDay()).sort((a,b)=>a.h.localeCompare(b.h)).forEach(e=>sl.push([d,e.g]))}sl.forEach(([d,g])=>{const k=g===''?q.reduce((b,a,i)=>a.length>q[b].length?i:b,0):+g,l=q[k].shift();if(l)l.pl=d});out[t]={slots:sl.length,left:q.map(a=>a.length)}});save();return out}
+const lk=()=>{if(!S.sc.some(e=>e.c===U.c)){alert('أدخل جدول حصص هذا القسم أولًا من تبويب المفكرة');return}U.pl=plan();R()};
+const plS=()=>{if(!U.pl)return '';return `<div class=cd><b>الربط بالروزنامة</b>`+[1,2,3].map(t=>{const r=U.pl[t],n=r.left.reduce((x,y)=>x+y,0);return `<div>الثلاثي ${t}: ${r.slots} حصة متاحة${n?` · <b style="color:#d97706">⚠ ${n} درس بلا حصة (${r.left.map((c,i)=>c?D[i]+' '+c:'').filter(Boolean).join('، ')})</b>`:' · ✓ يكفي'}</div>`}).join('')+`<small>تُحتسب الحصص من الغد حسب جدولك، دون العطل وفترات الفروض (التفاصيل في الإعدادات).</small></div>`};
+const s_=(k,v)=>{cur()[k]=v;save()};
+const addS=()=>{const s={id:uid(),c:U.c,fn:'',ln:'',fa:'',jb:'',ad:'',ph:'',bd:'',p:'',h:'',ps:'',so:'',fl:0,nt:[],ab:[],ar:0};S.st.push(s);save();U.sid=s.id;R()};
+const ab=(i,y)=>{S.st.find(s=>s.id===i).ab.push({d:td(),y});save();R()};
+const da=k=>{cur().ab.splice(k,1);save();R()};
+const addN=()=>{const x=$('#nx').value.trim();if(!x)return;cur().nt.push({d:td(),y:$('#ny').value,x});save();R()};
+const dnote=k=>{cur().nt.splice(k,1);save();R()};
+const pvo=()=>{U.pv=S.pin?(prompt('أدخل الرمز')===S.pin?1:0):1;R()};
+const back=()=>{U.sid=null;U.pv=0;R()};
+const arch=()=>{if(confirm('أرشفة هذا التلميذ؟')){cur().ar=1;back()}};
+const proc=src=>{const m=new Image();m.onload=()=>{const c=document.createElement('canvas');c.width=c.height=96;const x=c.getContext('2d'),z=Math.min(m.width,m.height);x.drawImage(m,(m.width-z)/2,(m.height-z)/2,z,z,0,0,96,96);cur().p=c.toDataURL('image/jpeg',.7);save();R()};m.src=src};
+const ph=i=>{const fl=i.files[0];if(!fl)return;const r=new FileReader();r.onload=()=>proc(r.result);r.readAsDataURL(fl)};
+const pick=async()=>{const C=window.Capacitor&&Capacitor.Plugins&&Capacitor.Plugins.Camera;if(!C){$('#pf').click();return}try{const r=await C.getPhoto({quality:70,width:400,resultType:'dataUrl',source:'PROMPT',promptLabelHeader:'صورة التلميذ',promptLabelPhoto:'من المعرض',promptLabelPicture:'التقاط صورة',promptLabelCancel:'إلغاء'});proc(r.dataUrl)}catch(e){if(!/cancel/i.test(String(e&&e.message)))$('#pf').click()}};
+const addC=()=>{const s=$('#cs').value.trim(),n=$('#cc').value.trim();if(!s||!n)return;const c={id:uid(),s,n};S.cl.push(c);if(!U.c)U.c=c.id;save();R()};
+const delC=i=>{if(confirm('حذف القسم وكل تلاميذه ودروسه؟')){S.cl=S.cl.filter(c=>c.id!==i);S.st=S.st.filter(s=>s.c!==i);S.ls=S.ls.filter(l=>l.c!==i);S.sc=S.sc.filter(x=>x.c!==i);S.hw=S.hw.filter(x=>x.c!==i);if(U.c===i)U.c=S.cl[0]?S.cl[0].id:'';save();R()}};
+const addSc=()=>{const h=$('#sh').value;if(!h||!U.c)return;S.sc.push({id:uid(),d:+$('#sd').value,h,c:U.c,g:$('#sg').value});save();R()};
+const delSc=i=>{S.sc=S.sc.filter(x=>x.id!==i);save();R()};
+const addHw=()=>{const x=$('#hx').value.trim();if(!x||!U.c)return;S.hw.push({id:uid(),c:U.c,x,a:td(),u:$('#hd').value,m:[]});save();R()};
+const tg=(h,s)=>{const o=S.hw.find(x=>x.id===h);o.m=o.m.includes(s)?o.m.filter(y=>y!==s):[...o.m,s];save();R()};
+const dn=(i,v)=>{S.ls.find(l=>l.id===i).dn=v===false?'':td();save();R()};
+const dl=i=>{S.ls=S.ls.filter(l=>l.id!==i);save();R()};
+const impL=()=>{const g=+$('#lg').value;$('#lx').value.split('\n').map(x=>x.trim()).filter(Boolean).forEach(x=>S.ls.push({id:uid(),c:U.c,t:U.tri,g,x,dn:''}));save();R()};
+const seedL=()=>{if(!U.c||!confirm('تحميل دروس السابعة في هذا القسم؟'))return;SD.forEach(([t,g,s])=>s.split('،').forEach(x=>S.ls.push({id:uid(),c:U.c,t,g,x,dn:''})));save();R()};
+const sm=(i,k,v)=>{const key=i+'|'+U.tri;S.mk[key]=Object.assign({},S.mk[key],{[k]:v});save();R()};
+const imp=()=>{try{S=JSON.parse($('#bk').value);save();R()}catch(e){alert('النسخة غير صالحة')}};
+const setPin=()=>{S.pin=$('#pn2').value.trim();save();alert(S.pin?'تم ضبط الرمز':'أُلغي الرمز')};
+const fld=(k,l,t)=>{const s=cur();return `<label>${l}<input type=${t||'text'} value="${esc(s[k])}" oninput="s_('${k}',this.value)"></label>`};
+const ta=(k,l)=>`<label>${l}<textarea rows=2 oninput="s_('${k}',this.value)">${esc(cur()[k])}</textarea></label>`;
+function v0(){
+ if(U.sid){const s=cur();return `<button onclick="back()">← القائمة</button><div class=cd>${s.p?`<img class=ph src="${s.p}">`:''}<button onclick="pick()">📷 التقاط أو اختيار صورة</button><input id=pf type=file accept="image/*" onchange="ph(this)" style="display:none">${fld('ln','اللقب')}${fld('fn','الاسم')}${fld('bd','تاريخ الولادة','date')}${fld('fa','اسم الأب')}${fld('jb','مهنة الأب')}${fld('ad','محل الإقامة')}${fld('ph','هاتف الولي','tel')}${s.ph?`<a href="tel:${esc(s.ph)}">📞 اتصال</a>`:''}</div>
+<div class=cd><b>الملف الخاص</b>${U.pv?`${ta('h','الوضع الصحي')}${ta('ps','الوضع النفسي')}${ta('so','الوضع الاجتماعي')}<label><input type=checkbox style="width:auto" ${s.fl?'checked':''} onchange="s_('fl',this.checked?1:0)"> علامة تنبيه تظهر في القائمة</label>`:'<br><button onclick="pvo()">فتح</button>'}</div>
+<div class=cd><b>السلوك</b><div class=r><select id=ny style="width:auto"><option>إيجابية</option><option>سلبية</option><option>محايدة</option></select><input id=nx placeholder="ملاحظة"><button onclick="addN()">+</button></div>${s.nt.map((n,k)=>`<div class=r><span class=nm><small>${n.d} · ${n.y}</small> ${esc(n.x)}</span><button onclick="dnote(${k})">✕</button></div>`).join('')}</div>
+<div class=cd><b>الغياب والتأخر</b> <small>غ ${s.ab.filter(a=>a.y==='غ').length} · ت ${s.ab.filter(a=>a.y==='ت').length} · واجبات غير منجزة ${S.hw.filter(h=>h.m.includes(s.id)).length}</small>${s.ab.slice(-8).map((a,k,r)=>`<div class=r><span class=nm>${a.d} · ${a.y==='غ'?'غياب':'تأخر'}</span><button onclick="da(${s.ab.length-r.length+k})">✕</button></div>`).join('')}</div>
+<div class=cd><b>الأعداد</b><br>${[1,2,3].map(t=>`ث${t}: ${f(avg(S.mk[s.id+'|'+t]))}`).join(' · ')}<br>المعدل السنوي: <b>${f(an(s.id))}</b></div><button onclick="arch()">أرشفة التلميذ</button>`}
+ return `<button class=p onclick="addS()">+ تلميذ جديد</button> <small>${stu().length} تلميذ</small>`+stu().map(s=>`<div class="cd r"><span class=nm onclick="U.sid='${s.id}';R()">${s.fl?'⚠ ':''}${esc((s.ln+' '+s.fn).trim()||'بلا اسم')}</span><small>غ${s.ab.filter(a=>a.y==='غ').length} ت${s.ab.filter(a=>a.y==='ت').length}</small><button onclick="ab('${s.id}','غ')">غ</button><button onclick="ab('${s.id}','ت')">ت</button></div>`).join('')}
+function v1(){
+ const d=new Date(Date.now()+864e5).getDay(),e=S.sc.filter(x=>x.d===d).sort((a,b)=>a.h.localeCompare(b.h));
+ let h=`<h3>دروس الغد (${DY[d]})</h3>`+(e.length?e.map(x=>{const l=S.ls.find(l=>l.c===x.c&&l.t===U.tri&&(x.g===''||String(l.g)===x.g)&&!l.dn);return `<div class=cd><b>${x.h}</b> · ${esc(cn(x.c))} <small>${x.g===''?'':D[x.g]}</small>${l?`<div>الدرس المقترح: <b>${esc(l.x)}</b> <button onclick="dn('${l.id}')">أُنجز</button></div>`:'<div class=m>لا درس مبرمج</div>'}</div>`}).join(''):'<p class=m>لا حصص مسجلة غدًا.</p>');
+ h+=`<h3>جدول الحصص</h3><div class=cd><div class=r><select id=sd>${DY.map((x,i)=>`<option value=${i}>${x}</option>`).join('')}</select><input id=sh type=time></div><select id=sg><option value="">أي مجال</option>${D.map((x,i)=>`<option value=${i}>${x}</option>`).join('')}</select><button class=p onclick="addSc()">+ حصة للقسم المحدد</button></div>`+S.sc.slice().sort((a,b)=>a.d-b.d||a.h.localeCompare(b.h)).map(x=>`<div class=r><span class=nm>${DY[x.d]} ${x.h} · ${esc(cn(x.c))} ${x.g===''?'':'· '+D[x.g]}</span><button onclick="delSc('${x.id}')">✕</button></div>`).join('');
+ h+=`<h3>الواجبات</h3><div class=cd><input id=hx placeholder="نص الواجب"><label>تاريخ التسليم<input id=hd type=date></label><button class=p onclick="addHw()">تكليف</button></div>`+S.hw.filter(x=>x.c===U.c).slice().reverse().map(x=>`<div class=cd><div class=r><span class=nm>${esc(x.x)} <small>(${x.a} ← ${x.u||'—'})</small></span><button onclick="U.hw=U.hw==='${x.id}'?null:'${x.id}';R()">لم ينجزه (${x.m.length})</button></div>${U.hw===x.id?stu().map(s=>`<button style="margin:3px;${x.m.includes(s.id)?'background:var(--p);color:#fff':''}" onclick="tg('${x.id}','${s.id}')">${esc(s.ln+' '+s.fn)}</button>`).join(''):''}</div>`).join('');
+ return h}
+function v2(){
+ let h=`<div class=cd><label>المجال<select id=lg>${D.map((x,i)=>`<option value=${i}>${x}</option>`).join('')}</select></label><label>دروس الثلاثي ${U.tri} (درس في كل سطر)<textarea id=lx rows=3></textarea></label><button class=p onclick="impL()">إضافة</button> <button onclick="seedL()">تحميل دروس السابعة</button> <button onclick="lk()">ربط بالروزنامة</button><label><input type=checkbox style="width:auto" ${U.ext?'checked':''} onchange="U.ext=this.checked;lk()"> احتساب أسابيع السير العادي أثناء الفروض والإصلاح أيام تدريس</label></div>${plS()}`;
+ D.forEach((d,i)=>{const a=S.ls.filter(l=>l.c===U.c&&l.t===U.tri&&l.g===i);if(a.length)h+=`<h3>${d} <small>${a.filter(l=>l.dn).length}/${a.length}</small></h3>`+a.map(l=>`<div class="cd r"><input type=checkbox style="width:auto" ${l.dn?'checked':''} onchange="dn('${l.id}',this.checked)"><span class=nm>${esc(l.x)}</span><small>${l.dn||(l.pl?'مبرمج '+l.pl:'')}</small><button onclick="dl('${l.id}')">✕</button></div>`).join('')});
+ return h}
+function v3(){
+ const L=stu().map(s=>({s,a:avg(S.mk[s.id+'|'+U.tri])})),vs=L.filter(r=>r.a!=null).map(r=>r.a),rk=vs.slice().sort((a,b)=>b-a);
+ const c=(s,k)=>`<td><input inputmode=decimal value="${esc((S.mk[s.id+'|'+U.tri]||{})[k])}" onchange="sm('${s.id}','${k}',this.value)"></td>`;
+ return `<p class=m>اكتب العدد، أو غ لغائب لا يُحتسب، أو غ0 لغائب يُحتسب صفرًا.</p><div class=tw><table><tr><th>التلميذ<th>إنشاء ×2<th>نص<th>جامع ×2<th>شفوي<th>المعدل<th>الرتبة<th>السنوي</tr>`+L.map(r=>`<tr><td>${esc(r.s.ln+' '+r.s.fn)}${c(r.s,'e')}${c(r.s,'t')}${c(r.s,'j')}${c(r.s,'o')}<td><b>${f(r.a)}</b><td>${r.a==null?'—':rk.indexOf(r.a)+1}<td>${f(an(r.s.id))}</tr>`).join('')+`</table></div><div class=cd>معدل القسم: <b>${vs.length?f(vs.reduce((a,b)=>a+b,0)/vs.length):'—'}</b> · الأعلى ${vs.length?f(Math.max(...vs)):'—'} · الأدنى ${vs.length?f(Math.min(...vs)):'—'} · دون 10: ${vs.filter(x=>x<10).length}<br><small>المعدل = (عدد المراقبة + 2 × الجامع + الشفوي) ÷ 4، وعدد المراقبة = (2 × الإنشاء + النص) ÷ 3. السنوي = (ث1 + 2×ث2 + 2×ث3) ÷ 5.</small></div>`}
+function v4(){
+ return `<div class=cd><b>الأقسام</b><div class=r><input id=cs placeholder="المدرسة"><input id=cc placeholder="القسم (مثل 7 أ)"></div><button class=p onclick="addC()">+ قسم</button>${S.cl.map(c=>`<div class=r><span class=nm>${esc(cn(c.id))}</span><button onclick="delC('${c.id}')">✕</button></div>`).join('')}</div>
+<div class=cd><b>رمز الدخول</b><input id=pn2 type=password inputmode=numeric placeholder="اتركه فارغًا لإلغائه" value="${esc(S.pin)}"><button class=p onclick="setPin()">حفظ</button></div>
+<div class=cd><b>نسخة احتياطية</b><br><small>انسخ النص وخزّنه في مكان آمن، ولاستعادته الصقه هنا ثم اضغط استيراد.</small><textarea id=bk rows=4>${esc(JSON.stringify(S))}</textarea><button class=p onclick="imp()">استيراد</button></div>
+<div class=cd><b>مواعيد 2026-2027</b> <small>(عن صحيفة، فتأكد من المنشور الوزاري)</small><br><b>العطل:</b> 14-27 ديسمبر · 1-7 فيفري · 15-28 مارس · ونهاية السنة 30 جوان<br><b>ث1:</b> مراقبة حتى 21 نوفمبر، تأليفية 23 نوفمبر-12 ديسمبر، أعداد 2 جانفي، مجالس 6-9 جانفي<br><b>ث2:</b> مراقبة حتى 20 فيفري، تأليفية 22 فيفري-13 مارس، أعداد 3 أفريل، مجالس 6-10 أفريل<br><b>ث3 (السابعة والثامنة):</b> مراقبة حتى 8 ماي، تأليفية 10-29 ماي، أعداد 12 جوان، مجالس 24-26 جوان<br><small>أيام التدريس المعتمدة في الربط: 9-21 نوفمبر، 4 جانفي-20 فيفري، 5 أفريل-8 ماي.</small></div>`}
+function R(){
+ const v=$('#v'),n=$('nav');
+ if(S.pin&&!U.ok){n.style.display='none';v.innerHTML=`<div class=cd><h3>أدخل الرمز</h3><input id=pn type=password inputmode=numeric><button class=p onclick="if($('#pn').value===S.pin){U.ok=1;R()}else alert('رمز خاطئ')">دخول</button></div>`;return}
+ n.style.display='';n.innerHTML=['👥 التلاميذ','📅 المفكرة','📚 الدروس','🔢 الأعداد','⚙ إعدادات'].map((x,i)=>`<button class="${U.tab===i?'on':''}" onclick="U.tab=${i};U.sid=null;U.pv=0;R()">${x}</button>`).join('');
+ const hd=S.cl.length?`<div class=bar><select onchange="U.c=this.value;U.sid=null;R()">${S.cl.map(c=>`<option value=${c.id} ${c.id===U.c?'selected':''}>${esc(c.s+' · '+c.n)}</option>`).join('')}</select><select onchange="U.tri=+this.value;R()">${[1,2,3].map(t=>`<option value=${t} ${t===U.tri?'selected':''}>الثلاثي ${t}</option>`).join('')}</select></div>`:'';
+ v.innerHTML=hd+(U.tab<4&&!S.cl.length?'<div class=cd>ابدأ بإضافة قسم من تبويب «إعدادات».</div>':[v0,v1,v2,v3,v4][U.tab]());
+}
+R();
+</script></body></html>
